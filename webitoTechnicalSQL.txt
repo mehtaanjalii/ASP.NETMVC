@@ -1,0 +1,24 @@
+create database Practical;
+
+create table Department(
+Id int PRIMARY KEY ,  
+DepartmentName Nvarchar (100) NOT NULL,
+IsActive BIT NOT Null
+);
+
+
+create table Employee (
+Id int PRIMARY KEY , 
+FirstName Nvarchar (50) NOT NULL,
+MiddleName Nvarchar (50) ,
+LastName Nvarchar (50) NOT NULL,
+DOB Date NOT NULL,
+Salary Decimal(18,2) NOT NULL,
+DepartmentId Int Foreign Key References Department(Id)
+
+);
+
+
+Create index IX_Employee_DepartmentId ON Employee(DepartmentId);
+
+Alter Table Department Add Constraint CK_Department_IsActive Check (IsActive IN(0, 1));
